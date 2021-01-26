@@ -1,0 +1,21 @@
+<nav class="navbar bg-dark">
+    <h2><a [routerLink]="['/']">YIF</a></h2>
+    <ul>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/client', 'login']">Залогінитися</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/client', 'register']">Зареєструватися</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/client', 'profile']">Профайл</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/client', 'update']">Оновоти профайл</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

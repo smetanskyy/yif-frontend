@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h2>Увійти в акаунт</h2>
+
+    <div class="form-control">
+        <label for="email">Пошта</label>
+        <input id="email" type="email" formControlName="email">
+        <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
+            <small *ngIf="form.get('email').errors.required">Електронна пошта є обов'язковою!</small>
+            <small *ngIf="form.get('email').errors.email">Введіть дійсну електронну пошту!</small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label for="password">Пароль</label>
+        <input id="password" type="password" formControlName="password">
+        <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">
+            <p *ngIf="form.get('password').errors.required">Пароль є обов'язковим!</p>
+            <p *ngIf="form.get('password').errors.minlength">Пароль має містити мінімум 8 символів!</p>
+            <p *ngIf="form.get('password').errors.maxlength">Пароль має містити максимум 20 символів!</p>
+            <p *ngIf="form.get('password').errors.pattern">Пароль має містити щонайменше одну літеру верхнього регістру, одну літеру нижнього регістру, одну цифру, один спеціальний символ!</p>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submited">Залогінитися</button>
+
+</form>
