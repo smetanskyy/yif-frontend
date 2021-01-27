@@ -1,6 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -9,9 +11,11 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 })
 export class LoginPageComponent implements OnInit {
   form: FormGroup | any;
-  submited = false;
+  submitted = false;
 
   constructor(
+    private auth: AuthService,
+    private router: Router,
     private recaptchaV3Service: ReCaptchaV3Service,
     private renderer: Renderer2) { }
 
@@ -23,15 +27,30 @@ export class LoginPageComponent implements OnInit {
       Validators.minLength(8),
       Validators.maxLength(20),
       Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*-?&])[A-Za-z\d$@$!%*-?&].{7,}")]),
-      RecaptchaToken: new FormControl("")
+      recaptchaToken: new FormControl("", Validators.required)
     })
+    
+    this.recaptchaV3Service.execute("login").subscribe((token) => {
+      this.form.patchValue({ recaptchaToken: token })
+    });
   }
 
   submit(): void {
-    this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
-      console.log("Recaptcha: ", token);
-      this.form.patchValue({ RecaptchaToken: token })
-    });
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.submitted = true;
+
+    const user = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+      recaptchaToken: this.form.value.recaptchaToken
+    }
+    
+    this.auth.login(user).subscribe( res => {
+      console.log("Response: ", res);
+    })
   }
 
   ngOnDestroy() {

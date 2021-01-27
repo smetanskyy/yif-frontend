@@ -9,7 +9,7 @@ import { RegisterPageComponent } from "./shared/register-page/register-page.comp
 import { UpdateProfilePageComponent } from "./shared/update-profile-page/update-profile-page.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
-
+import { environment } from "src/environments/environment"
 @NgModule({
     declarations: [
         ClientLayoutComponent,
@@ -37,7 +37,7 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
             }
         ])
     ],
-    providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Le3gRkaAAAAADJIzK5jv3HegJ7VzkuS0XiBa-mK" }],
+    providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.recaptchaSiteKey }],
     exports: [RouterModule]
 })
 
