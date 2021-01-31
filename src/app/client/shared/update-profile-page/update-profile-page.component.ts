@@ -44,7 +44,20 @@ export class UpdateProfilePageComponent implements OnInit {
   }
 
   public submit() {
+    if (this.form.invalid) {
+      return;
+    }
 
+    const clientInfo = {
+      name: this.form.value.name,
+      surname: this.form.value.surname,
+      middleName: this.form.value.middleName,
+      email: this.form.value.name,
+      phoneNumber: this.form.value.phone,
+      schoolName: this.form.value.school
+    }
+
+    console.log("Client info ", clientInfo);
   }
 
   getClientPhoto(): string {
