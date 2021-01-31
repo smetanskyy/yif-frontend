@@ -1,6 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <h2>Увійти в акаунт</h2>
-
+    <h2 class="text-center">Увійти в акаунт</h2>
     <div class="form-control">
         <label for="email">Пошта</label>
         <input id="email" type="email" formControlName="email">
@@ -21,5 +20,4 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted">Залогінитися</button>
-
 </form>

@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { UniversityPageComponent } from './shared/university-page/university-pag
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    QuillModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

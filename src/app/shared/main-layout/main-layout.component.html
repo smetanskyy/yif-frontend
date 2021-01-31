@@ -11,8 +11,11 @@
             <a href="#">Спеціальності</a>
         </li>
         <li routerLinkActive="active">
-            <a [routerLink]="['/client', 'login']">Особистий кабінет</a>
+            <a [routerLink]="['/client', 'dashboard']">Особистий кабінет</a>
         </li>
     </ul>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

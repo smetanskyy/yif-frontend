@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-client-layout',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public auth: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  public logout($event: Event){
+    $event.preventDefault();
+    this.auth.logout();
+    this.router.navigate(['/client', 'login']);
+  }
 }

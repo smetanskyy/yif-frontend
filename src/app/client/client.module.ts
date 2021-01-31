@@ -10,6 +10,9 @@ import { UpdateProfilePageComponent } from "./shared/update-profile-page/update-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { environment } from "src/environments/environment"
+import { ClientGuard } from "./client.guard";
+import { QuillModule } from 'ngx-quill'
+
 @NgModule({
     declarations: [
         ClientLayoutComponent,
@@ -24,15 +27,16 @@ import { environment } from "src/environments/environment"
         FormsModule,
         ReactiveFormsModule,
         RecaptchaV3Module,
+        QuillModule.forRoot(),
         RouterModule.forChild([
             {
                 path: '', component: ClientLayoutComponent, children: [
                     {path: '', redirectTo: 'login', pathMatch: 'full'},
                     {path: 'login', component: LoginPageComponent},
                     {path: 'register', component: RegisterPageComponent},
-                    {path: 'dashboard', component: DashboardPageComponent},
-                    {path: 'profile', component: ProfilePageComponent},
-                    {path: 'update', component: UpdateProfilePageComponent}
+                    {path: 'dashboard', component: DashboardPageComponent, canActivate: [ClientGuard]},
+                    {path: 'profile', component: ProfilePageComponent, canActivate: [ClientGuard]},
+                    {path: 'update', component: UpdateProfilePageComponent, canActivate: [ClientGuard]}
                 ]
             }
         ])
@@ -41,6 +45,6 @@ import { environment } from "src/environments/environment"
     exports: [RouterModule]
 })
 
-export class AdminModule{
+export class ClientModule{
 
 }

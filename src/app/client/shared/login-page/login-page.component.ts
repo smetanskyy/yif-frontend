@@ -22,23 +22,22 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'recaptcha');
     this.form = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [Validators.required,
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required,
       Validators.minLength(8),
       Validators.maxLength(20),
       Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*-?&])[A-Za-z\d$@$!%*-?&].{7,}")]),
-      recaptchaToken: new FormControl("", Validators.required)
+      recaptchaToken: new FormControl(null),
     })
-    
-    this.recaptchaV3Service.execute("login").subscribe((token) => {
-      this.form.patchValue({ recaptchaToken: token })
-    });
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.form.invalid) {
       return;
     }
+
+    await this.recaptchaV3Service.execute("login")
+      .toPromise().then((token) => { this.form.patchValue({ recaptchaToken: token }) });
 
     this.submitted = true;
 
@@ -47,9 +46,13 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password,
       recaptchaToken: this.form.value.recaptchaToken
     }
-    
-    this.auth.login(user).subscribe( res => {
-      console.log("Response: ", res);
+
+    this.auth.login(user).subscribe(() => {
+      this.form.reset;
+      this.submitted = false;
+      this.router.navigate(['/client', 'profile']);
+    }, () => {
+      this.submitted = false;
     })
   }
 
