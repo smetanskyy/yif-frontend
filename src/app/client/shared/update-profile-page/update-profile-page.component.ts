@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ClientService } from 'src/app/services/client.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-update-profile-page',
@@ -9,9 +13,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UpdateProfilePageComponent implements OnInit {
   form: FormGroup | any;
   submitted = false;
-  constructor() { }
+  constructor(
+    private clientService: ClientService,
+    private router: Router,
+    private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinnerService.show();
     this.form = new FormGroup({
       // client name 
       name: new FormControl(null, [Validators.required,
@@ -41,9 +49,29 @@ export class UpdateProfilePageComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       school: new FormControl(null, Validators.required)
     });
+
+    this.clientService.getClientProfile().subscribe(res => {
+      console.log("GET USER INFO: ", res);
+      this.form.patchValue(
+        {
+          ...res,
+          phone: res.phoneNumber === null ? "+380" : res.phoneNumber,
+          school: res.schoolName
+        });
+        this.spinnerService.hide();
+    },
+      err => {
+        console.log("ERROR GET USER INFO: ", err);
+        this.spinnerService.hide();
+      })
+  }
+
+  setPhoto(){
+    
   }
 
   public submit() {
+    this.spinnerService.show();
     if (this.form.invalid) {
       return;
     }
@@ -52,15 +80,16 @@ export class UpdateProfilePageComponent implements OnInit {
       name: this.form.value.name,
       surname: this.form.value.surname,
       middleName: this.form.value.middleName,
-      email: this.form.value.name,
+      email: this.form.value.email,
       phoneNumber: this.form.value.phone,
       schoolName: this.form.value.school
     }
 
-    console.log("Client info ", clientInfo);
-  }
+    this.clientService.setClientProfile(clientInfo).subscribe(
+      res => { console.log("SET USER INFO: ", res) },
+      err => { console.log("ERROR SET USER INFO: ", err); });
 
-  getClientPhoto(): string {
-    return "http://localhost:5000/images/aed73414-5470-4fa7-8d59-5d226a5274cd.jpg";
+    this.router.navigate(['/client', 'dashboard']);
+    this.spinnerService.hide();
   }
 }

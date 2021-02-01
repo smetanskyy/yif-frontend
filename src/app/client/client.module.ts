@@ -12,6 +12,8 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { environment } from "src/environments/environment"
 import { ClientGuard } from "./client.guard";
 import { QuillModule } from 'ngx-quill'
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import { QuillModule } from 'ngx-quill'
         ReactiveFormsModule,
         RecaptchaV3Module,
         QuillModule.forRoot(),
+        NgxSpinnerModule,
+        ImageCropperModule,
         RouterModule.forChild([
             {
                 path: '', component: ClientLayoutComponent, children: [

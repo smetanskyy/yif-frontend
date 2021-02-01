@@ -16,7 +16,8 @@
             <p *ngIf="form.get('password').errors.required">Пароль є обов'язковим!</p>
             <p *ngIf="form.get('password').errors.minlength">Пароль має містити мінімум 8 символів!</p>
             <p *ngIf="form.get('password').errors.maxlength">Пароль має містити максимум 20 символів!</p>
-            <p *ngIf="form.get('password').errors.pattern">Пароль має містити щонайменше одну літеру верхнього регістру, одну літеру нижнього регістру, одну цифру, один спеціальний символ!</p>
+            <p *ngIf="form.get('password').errors.pattern">Пароль має містити щонайменше одну літеру верхнього регістру,
+                одну літеру нижнього регістру, одну цифру, один спеціальний символ!</p>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted">Залогінитися</button>

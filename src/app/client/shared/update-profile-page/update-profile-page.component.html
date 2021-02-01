@@ -3,7 +3,7 @@
 
     <div class="form-control">
         <label for="name">Фото:</label>
-        <img [src]="getClientPhoto()">
+        <img [src]="form.get('photo').value" title="Загрузити нове фото!" (click)="setPhoto()">
     </div>
 
     <div class="form-control">

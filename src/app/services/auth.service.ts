@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   private setTokens(response: any): void {
-    console.log("SET TOKENS: ", response);
+    console.log("SET TOKENS AUTH SERVICE: ", response);
     if (response === null) {
       localStorage.clear();
       return;

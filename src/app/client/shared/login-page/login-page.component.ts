@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-login-page',
@@ -17,7 +18,8 @@ export class LoginPageComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private recaptchaV3Service: ReCaptchaV3Service,
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'recaptcha');
@@ -32,6 +34,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   async submit(): Promise<void> {
+    this.spinnerService.show();
+
     if (this.form.invalid) {
       return;
     }
@@ -51,8 +55,10 @@ export class LoginPageComponent implements OnInit {
       this.form.reset;
       this.submitted = false;
       this.router.navigate(['/client', 'profile']);
+      this.spinnerService.hide();
     }, () => {
       this.submitted = false;
+      this.spinnerService.hide();
     })
   }
 
