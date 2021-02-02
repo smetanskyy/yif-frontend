@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~quill/dist/quill.core.css";
 @import "~quill/dist/quill.bubble.css";
 @import "~quill/dist/quill.snow.css";
@@ -17,13 +18,23 @@
   padding: 0;
 }
 
+html,
 body {
-  font-family: "Roboto", sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  margin: 0;
   padding-bottom: 10px;
+}
+
+h2 {
+  margin: auto 0 !important;
 }
 
 a {
@@ -40,15 +51,16 @@ ul {
   list-style: none;
 }
 
-img {
-  margin: auto;
-  display: block;
+.img-photo {
+  object-fit: contain;
   width: 50%;
+  height: auto;
+  margin: 20px;
   cursor: pointer;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 90%;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -57,6 +69,16 @@ img {
 .flex-center {
   display: flex;
   justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-align {
+  display: flex;
+  align-content: center;
 }
 
 .text-primary {
@@ -91,13 +113,11 @@ img {
   display: inline-block;
   background: var(--light-color);
   color: #333;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 0.2rem 1.3rem;
+  margin: auto;
+  padding: 5px 10px;
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
   border-radius: 0.5rem;
@@ -298,4 +318,42 @@ table th {
 /* only show recaptcha badge on needed pages */
 body.recaptcha .grecaptcha-badge {
   visibility: visible;
+}
+
+.example-2 .btn-tertiary {
+  color: #555;
+  padding: 0;
+  line-height: 40px;
+  width: auto;
+  margin: 0 5px;
+  display: block;
+  border: 2px solid #555;
+  text-align: center;
+}
+.example-2 .btn-tertiary:hover,
+.example-2 .btn-tertiary:focus {
+  color: #888;
+  border-color: #888;
+}
+.example-2 .input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.example-2 .input-file + .js-labelFile {
+  overflow: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.example-2 .input-file + .js-labelFile .icon:before {
+  content: "\f093";
+}
+.example-2 .input-file + .js-labelFile.has-file .icon:before {
+  content: "\f00c";
+  color: #5aac7b;
 }

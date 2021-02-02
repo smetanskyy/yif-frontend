@@ -6,7 +6,7 @@ import { DashboardPageComponent } from "./shared/dashboard-page/dashboard-page.c
 import { LoginPageComponent } from "./shared/login-page/login-page.component";
 import { ProfilePageComponent } from "./shared/profile-page/profile-page.component";
 import { RegisterPageComponent } from "./shared/register-page/register-page.component";
-import { UpdateProfilePageComponent } from "./shared/update-profile-page/update-profile-page.component";
+import { DialogOverview, UpdateProfilePageComponent } from "./shared/update-profile-page/update-profile-page.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { environment } from "src/environments/environment"
@@ -22,9 +22,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
         RegisterPageComponent,
         DashboardPageComponent,
         ProfilePageComponent,
-        UpdateProfilePageComponent
-      ],
-    imports:[
+        UpdateProfilePageComponent,
+        DialogOverview
+    ],
+    imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -35,12 +36,12 @@ import { ImageCropperModule } from 'ngx-image-cropper';
         RouterModule.forChild([
             {
                 path: '', component: ClientLayoutComponent, children: [
-                    {path: '', redirectTo: 'login', pathMatch: 'full'},
-                    {path: 'login', component: LoginPageComponent},
-                    {path: 'register', component: RegisterPageComponent},
-                    {path: 'dashboard', component: DashboardPageComponent, canActivate: [ClientGuard]},
-                    {path: 'profile', component: ProfilePageComponent, canActivate: [ClientGuard]},
-                    {path: 'update', component: UpdateProfilePageComponent, canActivate: [ClientGuard]}
+                    { path: '', redirectTo: 'login', pathMatch: 'full' },
+                    { path: 'login', component: LoginPageComponent },
+                    { path: 'register', component: RegisterPageComponent },
+                    { path: 'dashboard', component: DashboardPageComponent, canActivate: [ClientGuard] },
+                    { path: 'profile', component: ProfilePageComponent, canActivate: [ClientGuard] },
+                    { path: 'update', component: UpdateProfilePageComponent, canActivate: [ClientGuard] }
                 ]
             }
         ])
@@ -49,6 +50,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     exports: [RouterModule]
 })
 
-export class ClientModule{
+export class ClientModule {
 
 }

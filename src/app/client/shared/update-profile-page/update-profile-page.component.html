@@ -1,70 +1,70 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <h2 class="text-center">Оновити дані</h2>
-
-    <div class="form-control">
-        <label for="name">Фото:</label>
-        <img [src]="form.get('photo').value" title="Загрузити нове фото!" (click)="setPhoto()">
-    </div>
-
-    <div class="form-control">
-        <label for="name">Ім'я:</label>
-        <input id="name" type="text" formControlName="name">
-        <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
-            <small *ngIf="form.get('name').errors.required">Поле є обов'язковою!</small>
-            <p *ngIf="form.get('name').errors.minlength">Поле має містити мінімум 2 символа!</p>
-            <p *ngIf="form.get('name').errors.maxlength">Поле має містити максимум 20 символів!</p>
+<div class="flex-between">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h2 class="text-center">Оновити дані</h2>
+        <div class="form-control">
+            <label for="name">Ім'я:</label>
+            <input id="name" type="text" formControlName="name">
+            <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
+                <small *ngIf="form.get('name').errors.required">Поле є обов'язковою!</small>
+                <p *ngIf="form.get('name').errors.minlength">Поле має містити мінімум 2 символа!</p>
+                <p *ngIf="form.get('name').errors.maxlength">Поле має містити максимум 20 символів!</p>
+            </div>
         </div>
-    </div>
 
-    <div class="form-control">
-        <label for="middleName">По батькові:</label>
-        <input id="middleName" type="text" formControlName="middleName">
-        <div *ngIf="form.get('middleName').touched && form.get('middleName').invalid" class="validation">
-            <small *ngIf="form.get('middleName').errors.required">Поле є обов'язковою!</small>
-            <p *ngIf="form.get('middleName').errors.minlength">Поле має містити мінімум 2 символа!</p>
-            <p *ngIf="form.get('middleName').errors.maxlength">Поле має містити максимум 20 символів!</p>
+        <div class="form-control">
+            <label for="middleName">По батькові:</label>
+            <input id="middleName" type="text" formControlName="middleName">
+            <div *ngIf="form.get('middleName').touched && form.get('middleName').invalid" class="validation">
+                <small *ngIf="form.get('middleName').errors.required">Поле є обов'язковою!</small>
+                <p *ngIf="form.get('middleName').errors.minlength">Поле має містити мінімум 2 символа!</p>
+                <p *ngIf="form.get('middleName').errors.maxlength">Поле має містити максимум 20 символів!</p>
+            </div>
         </div>
-    </div>
 
-    <div class="form-control">
-        <label for="surname">Прізвище:</label>
-        <input id="surname" type="text" formControlName="surname">
-        <div *ngIf="form.get('surname').touched && form.get('surname').invalid" class="validation">
-            <small *ngIf="form.get('surname').errors.required">Поле є обов'язковою!</small>
-            <p *ngIf="form.get('surname').errors.minlength">Поле має містити мінімум 2 символа!</p>
-            <p *ngIf="form.get('surname').errors.maxlength">Поле має містити максимум 20 символів!</p>
+        <div class="form-control">
+            <label for="surname">Прізвище:</label>
+            <input id="surname" type="text" formControlName="surname">
+            <div *ngIf="form.get('surname').touched && form.get('surname').invalid" class="validation">
+                <small *ngIf="form.get('surname').errors.required">Поле є обов'язковою!</small>
+                <p *ngIf="form.get('surname').errors.minlength">Поле має містити мінімум 2 символа!</p>
+                <p *ngIf="form.get('surname').errors.maxlength">Поле має містити максимум 20 символів!</p>
+            </div>
         </div>
-    </div>
 
-    <div class="form-control">
-        <label for="phone">Телефон:</label>
-        <input id="phone" type="tel" formControlName="phone">
-        <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
-            <small *ngIf="form.get('phone').errors.required">Поле є обов'язковою!</small>
-            <p *ngIf="form.get('phone').errors.minlength">Поле має містити мінімум 13 символа!</p>
-            <p *ngIf="form.get('phone').errors.maxlength">Поле має містити максимум 13 символів!</p>
-            <p *ngIf="form.get('phone').errors.pattern">Поле має містити номер телефона!</p>
+        <div class="form-control">
+            <label for="phone">Телефон:</label>
+            <input id="phone" type="tel" formControlName="phone">
+            <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
+                <small *ngIf="form.get('phone').errors.required">Поле є обов'язковою!</small>
+                <p *ngIf="form.get('phone').errors.minlength">Поле має містити мінімум 13 символа!</p>
+                <p *ngIf="form.get('phone').errors.maxlength">Поле має містити максимум 13 символів!</p>
+                <p *ngIf="form.get('phone').errors.pattern">Поле має містити номер телефона!</p>
+            </div>
         </div>
-    </div>
 
-    <div class="form-control">
-        <label for="email">Пошта:</label>
-        <input id="email" type="email" formControlName="email">
-        <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
-            <small *ngIf="form.get('email').errors.required">Електронна пошта є обов'язковою!</small>
-            <small *ngIf="form.get('email').errors.email">Введіть дійсну електронну пошту!</small>
+        <div class="form-control">
+            <label for="email">Пошта:</label>
+            <input id="email" type="email" formControlName="email">
+            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
+                <small *ngIf="form.get('email').errors.required">Електронна пошта є обов'язковою!</small>
+                <small *ngIf="form.get('email').errors.email">Введіть дійсну електронну пошту!</small>
+            </div>
         </div>
-    </div>
 
-    <div class="form-control">
-        <label for="school">Школа:</label>
-        <select formControlName="school">
-            <option value="Школа №4">Школа №4</option>
-            <option value="ЗОШ №3">ЗОШ №3</option>
-            <option value="Школа №25">Школа №25</option>
-            <option value='Рівненська гімназія \"Гармонія\"'>Рівненська гімназія "Гармонія"</option>
-        </select>
-    </div>
+        <div class="form-control">
+            <label for="school">Школа:</label>
+            <select formControlName="school">
+                <option value="Школа №4">Школа №4</option>
+                <option value="ЗОШ №3">ЗОШ №3</option>
+                <option value="Школа №25">Школа №25</option>
+                <option value='Рівненська гімназія \"Гармонія\"'>Рівненська гімназія "Гармонія"</option>
+            </select>
+        </div>
+        <div class="form-control">
+            <button type="submit" class="btn btn-primary btn-block"
+                [disabled]="form.invalid || submitted">Оновити</button>
+        </div>
+    </form>
 
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted">Оновити</button>
-</form>
+    <img class="img-photo" [src]="form.get('photo').value" title=" Загрузити нове фото!" (click)="openDialog()">
+</div>

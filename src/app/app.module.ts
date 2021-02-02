@@ -11,6 +11,7 @@ import { MainPageComponent } from './shared/main-page/main-page.component';
 import { UniversityPageComponent } from './shared/university-page/university-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,13 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AppRoutingModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     QuillModule.forRoot()
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterseptor }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterseptor },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

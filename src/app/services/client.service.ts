@@ -22,4 +22,9 @@ export class ClientService {
     let setClientProfileUrl: string = BASE_URL + "api/Users/Current/SetProfile";
     return this.http.post(setClientProfileUrl, model);
   }
+
+  setClientPhoto(model: any): Observable<any> {
+    let setClientProfileUrl: string = BASE_URL + "api/Users/Current/ChangePhoto";
+    return this.http.post(setClientProfileUrl, model);
+  }
 }
